@@ -1,0 +1,58 @@
+datasets:
+  path: ${data_root_dir}
+
+  dataloader_setting:
+    shuffle: True
+    num_workers: 0
+    batch_size: 8
+
+  audio_setting:
+    sample_rate: 16000
+    n_fft: 256
+    hop_length: 64
+    win_length: 256
+    ref_level_db: 20.0
+    min_level_db: -100.0
+
+feature_type: dvec
+
+model:
+  n_fft: 129 # n_fft / 2 + 1
+  num_layer: 4
+  hidden_size: 300
+  emb_dim: 40
+  dropout: 0.5
+  bidirectional: True
+  activation: Tanh
+  model_type: 1
+  f_dim: 256
+
+train:
+  with_vp: False
+  is_gpu: True
+  summary_interval: 1
+  eval_interval: 1000
+  checkpoint_interval: 1000
+  ckp_path: ${project_path}/checkpoints
+
+optimizer:
+  name: Adam # Adam, RMSProp, SGD
+  lr: 1.0e-4
+  momentum: 0.9
+  weight_decay: 0
+  clip_norm: 200
+
+resume:
+  state: False
+  ckp_path: ${project_path}/checkpoints/${name}
+
+logger:
+  name: ${name}
+  path: ${project_path}/log/${name}
+  config: ${project_path}/logger/config.yaml
+  screen: True
+  tofile: False
+  print_freq: 100
+
+board:
+  log_dir: ${project_path}/board/${name}

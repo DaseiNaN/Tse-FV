@@ -1,0 +1,50 @@
+name: vf_train_conv_mfcc_v1
+datasets:
+  path: 
+  
+  dataloader_setting:
+    shuffle: True
+    num_workers: 0
+    batch_size: 8
+
+feature_type: mfcc
+
+model:
+  num_layer: 4
+  n_fft: 129 # n_fft / 2 + 1
+  hidden_cells: 600
+  dropout: 0.5
+  bidirectional: True
+  model_type: 4
+  f_dim: 13
+
+train:
+  with_vp: False
+  ckp_path: 
+  is_gpu: true
+  summary_interval: 1
+  eval_interval: 1000
+  checkpoint_interval: 1000
+
+optimizer:
+  name: Adam # Adam, RMSProp, SGD
+  lr: 1.0e-4
+  momentum: 0.9
+  weight_decay: 0
+  clip_norm: 200
+
+resume:
+  state: False
+  ckp_path: none
+
+
+logger:
+  name: vf_train_conv_mfcc_v1
+  path: 
+  config: 
+  screen: True
+  tofile: False
+  print_freq: 100
+
+board:
+  log_dir: 

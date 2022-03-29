@@ -1,0 +1,59 @@
+name: dpcl_train_v1
+datasets:
+  path: 
+
+  dataloader_setting:
+    shuffle: True
+    num_workers: 0
+    batch_size: 24
+
+  audio_setting:
+    sample_rate: 16000
+    n_fft: 256
+    hop_length: 64
+    win_length: 256
+    ref_level_db: 20.0
+    min_level_db: -100.0
+
+feature_type: None
+
+model:
+  n_fft: 129 # n_fft / 2 + 1
+  num_layer: 4
+  hidden_size: 300
+  emb_dim: 40
+  dropout: 0.5
+  bidirectional: True
+  activation: Tanh
+  model_type: 0
+  f_dim: 0
+
+train:
+  with_vp: False
+  is_gpu: True
+  summary_interval: 1
+  eval_interval: 1000
+  checkpoint_interval: 1000
+  ckp_path: 
+
+optimizer:
+  name: Adam # Adam, RMSProp, SGD
+  lr: 1.0e-4
+  momentum: 0.9
+  weight_decay: 0
+  clip_norm: 200
+
+resume:
+  state: False
+  ckp_path: /home/chengshidan/Documents/GraduationProject/serendipity/checkpoints/dpcl_train_v1
+
+logger:
+  name: dpcl_train_v1
+  path: /home/chengshidan/Documents/GraduationProject/serendipity/log/dpcl_train_v1
+  config: /home/chengshidan/Documents/GraduationProject/serendipity/logger/config.yaml
+  screen: True
+  tofile: False
+  print_freq: 100
+
+board:
+  log_dir: /home/chengshidan/Documents/GraduationProject/serendipity/board/dpcl_train_v1

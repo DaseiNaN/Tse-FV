@@ -1,0 +1,69 @@
+name: pit_train_mfcc_v1
+# datasets settings
+datasets:
+  path: 
+
+  dataloader_setting:
+    shuffle: True
+    num_workers: 0
+    batch_size: 8
+  
+  audio_setting:
+    sample_rate: 16000
+    n_fft: 256
+    hop_length: 64
+    win_length: 256
+    ref_level_db: 20.0
+    min_level_db: -100.0
+
+feature_type: mfcc
+# network structures
+model:
+  n_fft: 129 # n_fft / 2 + 1
+  rnn: lstm
+  num_spks: 2
+  num_layers: 3
+  hidden_size: 896
+  dropout: 0.5
+  non_linear: relu
+  bidirectional: True
+  model_type: 2
+  f_dim: 13
+
+# optimizer settings
+optimizer:
+  name: Adam # Adam, RMSProp, SGD
+  lr: 1.0e-3
+  momentum: 0.9
+  weight_decay: 0
+  clip_norm: 200
+  min_lr: 1.0e-10
+  patience: 1
+  factor: 0.7
+  disturb_std: 0
+
+# resume training settings
+resume:
+  state: False
+  ckp_path: 
+
+# train settings:
+train:
+  is_gpu: True
+  ckp_path: 
+  summary_interval: 1
+  eval_interval: 1000
+  checkpoint_interval: 1000
+
+# logger settings
+logger:
+  name: pit_train_mfcc_v1
+  path: 
+  config: 
+  screen: True
+  tofile: False
+  print_freq: 100
+
+# tensorboard  settings
+board:
+  path: 
